@@ -39,13 +39,14 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
 
     if(datesElement) {
         datesElement.innerHTML = ''
-        for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 2; i<=lastDateOfPrevMonth; i++){
+        for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i<=lastDateOfPrevMonth; i++){
             datesElement.innerHTML += `<span class='Date PrevDate'>${i}</span>`
         }
         for(let i = 1; i<=lastDayOfThisMonth.getDate(); i++) {
             datesElement.innerHTML += `<span class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${i}</span>`
         }
-        for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay(); i++) {
+        console.log(lastDayOfThisMonth.getDay())
+        for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
             datesElement.innerHTML += `<span class='Date NextDate'>${i}</span>`
         }
     }
