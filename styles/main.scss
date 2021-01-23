@@ -38,11 +38,24 @@ body{
                 cursor: pointer;
             }
         }
-        .MonthName {
-            font-size : 1.5rem;
-            text-transform: uppercase;
-            font-weight: 400;
+        .DivCurrent{
+            display : flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .MonthName {
+                font-size : 1.5rem;
+                text-transform: uppercase;
+                font-weight: 400;
+            }
+            .CurrentDate{
+                padding : 5px 0px;
+                font-size : 0.8rem;
+                font-weight: 600;
+                color : rgba(255, 255, 255, 0.6);
+            }
         }
+
     }
     .Labels{
         width : 100%;
