@@ -24,8 +24,6 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
     contextDate.setMonth(contextMonth)
     contextDate.setFullYear(contextYear)
 
-    // const contextMonth : number = contextDate.getMonth()
-
     const firstDayOfThisMonth : Date = new Date(contextYear, contextDate.getMonth(), 1)
     const lastDayOfThisMonth : Date = new Date(contextYear, contextDate.getMonth() + 1, 0)
 
@@ -33,7 +31,7 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
     const lastDateOfPrevMonth : number = new Date(2021, contextDate.getMonth(), 0).getDate()
 
     if(monthNameElement) {
-        monthNameElement.innerHTML = dayArray[contextMonth]
+        monthNameElement.innerHTML = dayArray[contextMonth] + ` ${contextYear}`
     }
     if(currentDateElement) {
         currentDateElement.innerHTML = new Date().toDateString()
@@ -41,13 +39,13 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
 
     if(datesElement) {
         datesElement.innerHTML = ''
-        for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i<=lastDateOfPrevMonth; i++){
+        for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 2; i<=lastDateOfPrevMonth; i++){
             datesElement.innerHTML += `<span class='Date PrevDate'>${i}</span>`
         }
         for(let i = 1; i<=lastDayOfThisMonth.getDate(); i++) {
             datesElement.innerHTML += `<span class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${i}</span>`
         }
-        for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
+        for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay(); i++) {
             datesElement.innerHTML += `<span class='Date NextDate'>${i}</span>`
         }
     }

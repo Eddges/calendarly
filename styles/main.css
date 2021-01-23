@@ -70,14 +70,14 @@ body {
 }
 
 .Container .Top .DivCurrent .MonthName {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 400;
 }
 
 .Container .Top .DivCurrent .CurrentDate {
   padding: 5px 0px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.6);
 }
