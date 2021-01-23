@@ -9,5 +9,95 @@ body {
   width: 100%;
   height: 100vh;
   background-color: #252525;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #eee;
+}
+
+.Container {
+  width: 320px;
+  -webkit-box-shadow: -12px -12px 15px #1f1f1f, 12px 12px 15px #2b2b2b;
+          box-shadow: -12px -12px 15px #1f1f1f, 12px 12px 15px #2b2b2b;
+}
+
+.Container .Top {
+  width: 100%;
+  padding: 24px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #6930c3;
+}
+
+.Container .Top i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Container .Top i:hover {
+  cursor: pointer;
+}
+
+.Container .Top .MonthName {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.Container .Labels {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  padding: 20px 0px 5px 0px;
+}
+
+.Container .Labels .Label {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.Container .Dates {
+  padding: 16px 0px;
+  font-size: 0.8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  font-weight: 600;
+}
+
+.Container .Dates .Date {
+  padding: 10px 0px;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border: solid 1px transparent;
+}
+
+.Container .Dates .Date:hover {
+  border: 1px solid #6930c3;
+  cursor: pointer;
+}
+
+.Container .Dates .Active {
+  background-color: #6930c3;
 }
 /*# sourceMappingURL=main.css.map */
