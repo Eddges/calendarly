@@ -35,6 +35,7 @@ var renderCalendar = function (contextMonth) {
         currentDateElement.innerHTML = new Date().toDateString();
     }
     if (datesElement) {
+        datesElement.innerHTML = '';
         for (var i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i <= lastDateOfPrevMonth; i++) {
             datesElement.innerHTML += "<span class='Date PrevDate'>" + i + "</span>";
         }
@@ -46,4 +47,20 @@ var renderCalendar = function (contextMonth) {
         }
     }
 };
-renderCalendar(3);
+renderCalendar(0);
+var monthCounter = 0;
+var yearCounter = new Date().getFullYear();
+var prevMonthChevron = document.querySelector('#prevMonth');
+var nextMonthChevron = document.querySelector('#nextMonth');
+if (prevMonthChevron) {
+    prevMonthChevron.addEventListener('click', function () {
+        monthCounter--;
+        renderCalendar(monthCounter);
+    });
+}
+if (nextMonthChevron) {
+    nextMonthChevron.addEventListener('click', function () {
+        monthCounter++;
+        renderCalendar(monthCounter);
+    });
+}

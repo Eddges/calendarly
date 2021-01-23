@@ -44,6 +44,7 @@ const renderCalendar: (contextMonth : number | void) => void = (contextMonth) =>
     }
 
     if(datesElement) {
+        datesElement.innerHTML = ''
         for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i<=lastDateOfPrevMonth; i++){
             datesElement.innerHTML += `<span class='Date PrevDate'>${i}</span>`
         }
@@ -57,4 +58,24 @@ const renderCalendar: (contextMonth : number | void) => void = (contextMonth) =>
     
 };
 
-renderCalendar(3);
+renderCalendar(0);
+
+let monthCounter = 0
+let yearCounter = new Date().getFullYear()
+
+const prevMonthChevron = document.querySelector('#prevMonth')
+const nextMonthChevron = document.querySelector('#nextMonth')
+
+if(prevMonthChevron) {
+    prevMonthChevron.addEventListener('click', () => {
+        monthCounter--
+        renderCalendar(monthCounter)
+    })
+}
+
+if(nextMonthChevron) {
+    nextMonthChevron.addEventListener('click', () => {
+        monthCounter++
+        renderCalendar(monthCounter)
+    })
+}
