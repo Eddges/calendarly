@@ -37,7 +37,6 @@ var renderCalendar = function (contextMonth, contextYear) {
         for (var i = 1; i <= lastDayOfThisMonth.getDate(); i++) {
             datesElement.innerHTML += "<span class='Date " + (i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : '') + "'>" + i + "</span>";
         }
-        console.log(lastDayOfThisMonth.getDay());
         for (var i = 1; i <= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
             datesElement.innerHTML += "<span class='Date NextDate'>" + i + "</span>";
         }
