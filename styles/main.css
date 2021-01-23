@@ -97,6 +97,10 @@ body {
   cursor: pointer;
 }
 
+.Container .Dates .PrevDate, .Container .Dates .NextDate {
+  color: #666;
+}
+
 .Container .Dates .Active {
   background-color: #6930c3;
 }

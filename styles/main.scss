@@ -71,6 +71,9 @@ body{
                 cursor: pointer;
             }
         }
+        .PrevDate, .NextDate{
+            color: #666;
+        }
         .Active{
             background-color: $violet;
         }
