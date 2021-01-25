@@ -1,2 +1,3 @@
-#Calendarly
-Never miss an update with Calendarly
+# Calendarly
+
+## The App that never lets you miss an update
