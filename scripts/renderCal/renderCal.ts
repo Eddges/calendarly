@@ -13,6 +13,32 @@ const dayArray : string[] = [
     'December'
 ]
 
+interface EventObjectInterface {
+    color : string
+    value : string
+}
+
+interface DateObjectInterface {
+    date : string
+    events : EventObjectInterface[]
+}
+
+const eventsArray : DateObjectInterface[] = []
+
+eventsArray.push({
+    date : '01/28/2021',
+    events : [
+        {
+        color : 'red',
+        value : 'Doctors Appointment'
+        },
+        {
+            color : 'green',
+            value : 'Grocery Shopping'
+            }
+    ]
+})
+
 const renderCalendar: (contextMonth : number, contextYear : number) => void = (contextMonth, contextYear) => {
 
     const monthNameElement = document.querySelector('.MonthName')
@@ -40,16 +66,31 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
     if(datesElement) {
         datesElement.innerHTML = ''
         for(let i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i<=lastDateOfPrevMonth; i++){
-            datesElement.innerHTML += `<span class='Date PrevDate'>${i}</span>`
+            datesElement.innerHTML += `<div class='Date PrevDate'>${i}</div>`
         }
         for(let i = 1; i<=lastDayOfThisMonth.getDate(); i++) {
-            datesElement.innerHTML += `<span class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${i}</span>`
+            let eventsFlag = false
+            const numberSpan = `<span class='Number'>${i}</span>`
+            const redEvent = `<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Doctors Appointment</span>`
+            const eventsDiv = `<div class='Events'>${redEvent}</div>`
+            eventsFlag = true
+            datesElement.innerHTML += `<div class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${numberSpan}${eventsFlag ? eventsDiv : ''}</div>`
         }
         for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
-            datesElement.innerHTML += `<span class='Date NextDate'>${i}</span>`
+            datesElement.innerHTML += `<div class='Date NextDate'>${i}</div>`
         }
     }
-    
+
+    document.querySelectorAll('.EventsElement').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.nextElementSibling?.classList.remove('NoDisplay')
+        })
+    })
+    document.querySelectorAll('.EventsElement').forEach(item => {
+        item.addEventListener('mouseout', () => {
+            item.nextElementSibling?.classList.add('NoDisplay')
+        })
+    })
 };
 
 let monthCounter = 0

@@ -13,6 +13,20 @@ var dayArray = [
     'November',
     'December'
 ];
+var eventsArray = [];
+eventsArray.push({
+    date: '01/28/2021',
+    events: [
+        {
+            color: 'red',
+            value: 'Doctors Appointment'
+        },
+        {
+            color: 'green',
+            value: 'Grocery Shopping'
+        }
+    ]
+});
 var renderCalendar = function (contextMonth, contextYear) {
     var monthNameElement = document.querySelector('.MonthName');
     var currentDateElement = document.querySelector('.CurrentDate');
@@ -33,15 +47,32 @@ var renderCalendar = function (contextMonth, contextYear) {
     if (datesElement) {
         datesElement.innerHTML = '';
         for (var i = lastDateOfPrevMonth - currentDayOfTheWeek + 1; i <= lastDateOfPrevMonth; i++) {
-            datesElement.innerHTML += "<span class='Date PrevDate'>" + i + "</span>";
+            datesElement.innerHTML += "<div class='Date PrevDate'>" + i + "</div>";
         }
         for (var i = 1; i <= lastDayOfThisMonth.getDate(); i++) {
-            datesElement.innerHTML += "<span class='Date " + (i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : '') + "'>" + i + "</span>";
+            var eventsFlag = false;
+            var numberSpan = "<span class='Number'>" + i + "</span>";
+            var redEvent = "<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Doctors Appointment</span>";
+            var eventsDiv = "<div class='Events'>" + redEvent + "</div>";
+            eventsFlag = true;
+            datesElement.innerHTML += "<div class='Date " + (i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : '') + "'>" + numberSpan + (eventsFlag ? eventsDiv : '') + "</div>";
         }
         for (var i = 1; i <= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
-            datesElement.innerHTML += "<span class='Date NextDate'>" + i + "</span>";
+            datesElement.innerHTML += "<div class='Date NextDate'>" + i + "</div>";
         }
     }
+    document.querySelectorAll('.EventsElement').forEach(function (item) {
+        item.addEventListener('mouseenter', function () {
+            var _a;
+            (_a = item.nextElementSibling) === null || _a === void 0 ? void 0 : _a.classList.remove('NoDisplay');
+        });
+    });
+    document.querySelectorAll('.EventsElement').forEach(function (item) {
+        item.addEventListener('mouseout', function () {
+            var _a;
+            (_a = item.nextElementSibling) === null || _a === void 0 ? void 0 : _a.classList.add('NoDisplay');
+        });
+    });
 };
 var monthCounter = 0;
 var yearCounter = new Date().getFullYear();
