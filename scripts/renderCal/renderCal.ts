@@ -15,47 +15,18 @@ const dayArray : string[] = [
 
 interface EventObjectInterface {
     [key : string] : string
-
 }
 
 interface DateObjectInterface {
     date : EventObjectInterface[]
-    // events : EventObjectInterface[]
 }
 
 const eventsArray : {[key : string] : EventObjectInterface } = {}
 
-eventsArray['Mon Jan 26 2021'] = {
+eventsArray['Wed Jan 27 2021'] = {
     'red' : "Mom's Birthday",
     'blue' : "Grocery Shopping",
 }
-
-// eventsArray['Mon Jan 26 2021'] = [
-//         {
-//         color : 'red',
-//         value : "Mom's Birthday"
-//         },
-//         {
-//             color : 'green',
-//             value : "Grocery Shopping"
-//         }
-// ]
-
-// const eventsArray : DateObjectInterface[] = []
-
-// eventsArray.push({
-//     date : 'Mon Jan 25 2021',
-//     events : [
-//         {
-//         color : 'red',
-//         value : 'Doctors Appointment'
-//         },
-//         {
-//             color : 'green',
-//             value : 'Grocery Shopping'
-//         }
-//     ]
-// })
 
 
 const renderCalendar: (contextMonth : number, contextYear : number) => void = (contextMonth, contextYear) => {
@@ -91,17 +62,30 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
             let eventsFlag = false
             const today = new Date(contextYear, contextMonth, i)
             const todayString = today.toDateString()
+            console.log(todayString)
+            const numberSpan = `<span class='Number'>${i}</span>`
+
+            let redEvent : string = ''
+            let greenEvent : string = ''
+            let blueEvent : string = ''
 
             if(eventsArray[todayString]) {
-                
+                console.log('Matched')
+                eventsFlag = true
+                if(eventsArray[todayString].red) {
+                    redEvent = `<span class='EventsElement Red'></span><span class='Hover NoDisplay'>${eventsArray[todayString].red}</span>`
+                }
+                if(eventsArray[todayString].blue) {
+                    greenEvent = `<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>${eventsArray[todayString].blue}</span>`
+                }
+                if(eventsArray[todayString].green) {
+                    blueEvent = `<span class='EventsElement Green'></span><span class='Hover NoDisplay'>${eventsArray[todayString].green}</span>`
+                }
             }
             // eventsArray
 
-            const numberSpan = `<span class='Number'>${i}</span>`
-            const redEvent = `<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Meet Mr Freeman and give him a hug</span>`
-            const greenEvent = `<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>Doctors Appointment</span>`
-            const eventsDiv = `<div class='Events'>${redEvent}${greenEvent}</div>`
-            eventsFlag = true
+            
+            const eventsDiv = `<div class='Events'>${redEvent ? redEvent : ''}${greenEvent ? greenEvent : ''}${blueEvent ? blueEvent : ''}</div>`
             datesElement.innerHTML += `<div class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${numberSpan}${eventsFlag ? eventsDiv : ''}</div>`
         }
         for(let i = 1; i<= 7 - lastDayOfThisMonth.getDay() - 1; i++) {

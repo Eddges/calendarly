@@ -14,34 +14,10 @@ var dayArray = [
     'December'
 ];
 var eventsArray = {};
-eventsArray['Mon Jan 26 2021'] = {
+eventsArray['Wed Jan 27 2021'] = {
     'red': "Mom's Birthday",
     'blue': "Grocery Shopping",
 };
-// eventsArray['Mon Jan 26 2021'] = [
-//         {
-//         color : 'red',
-//         value : "Mom's Birthday"
-//         },
-//         {
-//             color : 'green',
-//             value : "Grocery Shopping"
-//         }
-// ]
-// const eventsArray : DateObjectInterface[] = []
-// eventsArray.push({
-//     date : 'Mon Jan 25 2021',
-//     events : [
-//         {
-//         color : 'red',
-//         value : 'Doctors Appointment'
-//         },
-//         {
-//             color : 'green',
-//             value : 'Grocery Shopping'
-//         }
-//     ]
-// })
 var renderCalendar = function (contextMonth, contextYear) {
     var monthNameElement = document.querySelector('.MonthName');
     var currentDateElement = document.querySelector('.CurrentDate');
@@ -68,14 +44,26 @@ var renderCalendar = function (contextMonth, contextYear) {
             var eventsFlag = false;
             var today = new Date(contextYear, contextMonth, i);
             var todayString = today.toDateString();
+            console.log(todayString);
+            var numberSpan = "<span class='Number'>" + i + "</span>";
+            var redEvent = '';
+            var greenEvent = '';
+            var blueEvent = '';
             if (eventsArray[todayString]) {
+                console.log('Matched');
+                eventsFlag = true;
+                if (eventsArray[todayString].red) {
+                    redEvent = "<span class='EventsElement Red'></span><span class='Hover NoDisplay'>" + eventsArray[todayString].red + "</span>";
+                }
+                if (eventsArray[todayString].blue) {
+                    greenEvent = "<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>" + eventsArray[todayString].blue + "</span>";
+                }
+                if (eventsArray[todayString].green) {
+                    blueEvent = "<span class='EventsElement Green'></span><span class='Hover NoDisplay'>" + eventsArray[todayString].green + "</span>";
+                }
             }
             // eventsArray
-            var numberSpan = "<span class='Number'>" + i + "</span>";
-            var redEvent = "<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Meet Mr Freeman and give him a hug</span>";
-            var greenEvent = "<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>Doctors Appointment</span>";
-            var eventsDiv = "<div class='Events'>" + redEvent + greenEvent + "</div>";
-            eventsFlag = true;
+            var eventsDiv = "<div class='Events'>" + (redEvent ? redEvent : '') + (greenEvent ? greenEvent : '') + (blueEvent ? blueEvent : '') + "</div>";
             datesElement.innerHTML += "<div class='Date " + (i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : '') + "'>" + numberSpan + (eventsFlag ? eventsDiv : '') + "</div>";
         }
         for (var i = 1; i <= 7 - lastDayOfThisMonth.getDay() - 1; i++) {
