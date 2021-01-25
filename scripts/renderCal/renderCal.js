@@ -13,20 +13,35 @@ var dayArray = [
     'November',
     'December'
 ];
-var eventsArray = [];
-eventsArray.push({
-    date: '01/28/2021',
-    events: [
-        {
-            color: 'red',
-            value: 'Doctors Appointment'
-        },
-        {
-            color: 'green',
-            value: 'Grocery Shopping'
-        }
-    ]
-});
+var eventsArray = {};
+eventsArray['Mon Jan 26 2021'] = {
+    'red': "Mom's Birthday",
+    'blue': "Grocery Shopping",
+};
+// eventsArray['Mon Jan 26 2021'] = [
+//         {
+//         color : 'red',
+//         value : "Mom's Birthday"
+//         },
+//         {
+//             color : 'green',
+//             value : "Grocery Shopping"
+//         }
+// ]
+// const eventsArray : DateObjectInterface[] = []
+// eventsArray.push({
+//     date : 'Mon Jan 25 2021',
+//     events : [
+//         {
+//         color : 'red',
+//         value : 'Doctors Appointment'
+//         },
+//         {
+//             color : 'green',
+//             value : 'Grocery Shopping'
+//         }
+//     ]
+// })
 var renderCalendar = function (contextMonth, contextYear) {
     var monthNameElement = document.querySelector('.MonthName');
     var currentDateElement = document.querySelector('.CurrentDate');
@@ -51,9 +66,15 @@ var renderCalendar = function (contextMonth, contextYear) {
         }
         for (var i = 1; i <= lastDayOfThisMonth.getDate(); i++) {
             var eventsFlag = false;
+            var today = new Date(contextYear, contextMonth, i);
+            var todayString = today.toDateString();
+            if (eventsArray[todayString]) {
+            }
+            // eventsArray
             var numberSpan = "<span class='Number'>" + i + "</span>";
-            var redEvent = "<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Doctors Appointment</span>";
-            var eventsDiv = "<div class='Events'>" + redEvent + "</div>";
+            var redEvent = "<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Meet Mr Freeman and give him a hug</span>";
+            var greenEvent = "<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>Doctors Appointment</span>";
+            var eventsDiv = "<div class='Events'>" + redEvent + greenEvent + "</div>";
             eventsFlag = true;
             datesElement.innerHTML += "<div class='Date " + (i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : '') + "'>" + numberSpan + (eventsFlag ? eventsDiv : '') + "</div>";
         }

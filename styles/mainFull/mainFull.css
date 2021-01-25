@@ -143,59 +143,6 @@ body {
   font-weight: 600;
 }
 
-.Container .Dates .Number {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.Container .Dates .Events {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.Container .Dates .Events .EventsElement {
-  margin-top: 4px;
-  width: 8px;
-  height: 8px;
-  border-radius: 5px;
-}
-
-.Container .Dates .Events .EventsElement:hover {
-  cursor: pointer;
-}
-
-.Container .Dates .Events .Hover {
-  position: absolute;
-  -webkit-transform: translateY(-54px);
-          transform: translateY(-54px);
-  padding: 8px 5px;
-  background-color: white;
-  color: #252525;
-}
-
-.Container .Dates .Events .Red {
-  background-color: red;
-}
-
-.Container .Dates .Events .Green {
-  background-color: green;
-}
-
-.Container .Dates .Events .Blue {
-  background-color: blue;
-}
-
 .Container .Dates .Date {
   padding: 10px 0px;
   display: -webkit-box;
@@ -216,7 +163,80 @@ body {
   cursor: pointer;
 }
 
+.Container .Dates .Date .Number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Container .Dates .Date .Events {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Container .Dates .Date .Events .EventsElement {
+  margin-top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  margin: 4px 2px 0px 2px;
+}
+
+.Container .Dates .Date .Events .EventsElement:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+.Container .Dates .Date .Events .Hover {
+  position: absolute;
+  -webkit-transform: translateY(-54px);
+          transform: translateY(-54px);
+  padding: 8px 5px;
+  background-color: white;
+  color: #252525;
+}
+
+.Container .Dates .Date .Events .Red {
+  background-color: #ff0059;
+}
+
+.Container .Dates .Date .Events .Green {
+  background-color: #24ff10;
+}
+
+.Container .Dates .Date .Events .Blue {
+  background-color: #1e80ff;
+}
+
 .Container .Dates .PrevDate, .Container .Dates .NextDate {
+  padding: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border: solid 1px transparent;
+  padding: 32px;
   color: #666;
 }
 

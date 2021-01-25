@@ -14,30 +14,49 @@ const dayArray : string[] = [
 ]
 
 interface EventObjectInterface {
-    color : string
-    value : string
+    [key : string] : string
+
 }
 
 interface DateObjectInterface {
-    date : string
-    events : EventObjectInterface[]
+    date : EventObjectInterface[]
+    // events : EventObjectInterface[]
 }
 
-const eventsArray : DateObjectInterface[] = []
+const eventsArray : {[key : string] : EventObjectInterface } = {}
 
-eventsArray.push({
-    date : '01/28/2021',
-    events : [
-        {
-        color : 'red',
-        value : 'Doctors Appointment'
-        },
-        {
-            color : 'green',
-            value : 'Grocery Shopping'
-            }
-    ]
-})
+eventsArray['Mon Jan 26 2021'] = {
+    'red' : "Mom's Birthday",
+    'blue' : "Grocery Shopping",
+}
+
+// eventsArray['Mon Jan 26 2021'] = [
+//         {
+//         color : 'red',
+//         value : "Mom's Birthday"
+//         },
+//         {
+//             color : 'green',
+//             value : "Grocery Shopping"
+//         }
+// ]
+
+// const eventsArray : DateObjectInterface[] = []
+
+// eventsArray.push({
+//     date : 'Mon Jan 25 2021',
+//     events : [
+//         {
+//         color : 'red',
+//         value : 'Doctors Appointment'
+//         },
+//         {
+//             color : 'green',
+//             value : 'Grocery Shopping'
+//         }
+//     ]
+// })
+
 
 const renderCalendar: (contextMonth : number, contextYear : number) => void = (contextMonth, contextYear) => {
 
@@ -70,9 +89,18 @@ const renderCalendar: (contextMonth : number, contextYear : number) => void = (c
         }
         for(let i = 1; i<=lastDayOfThisMonth.getDate(); i++) {
             let eventsFlag = false
+            const today = new Date(contextYear, contextMonth, i)
+            const todayString = today.toDateString()
+
+            if(eventsArray[todayString]) {
+                
+            }
+            // eventsArray
+
             const numberSpan = `<span class='Number'>${i}</span>`
-            const redEvent = `<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Doctors Appointment</span>`
-            const eventsDiv = `<div class='Events'>${redEvent}</div>`
+            const redEvent = `<span class='EventsElement Red'></span><span class='Hover NoDisplay'>Meet Mr Freeman and give him a hug</span>`
+            const greenEvent = `<span class='EventsElement Blue'></span><span class='Hover NoDisplay'>Doctors Appointment</span>`
+            const eventsDiv = `<div class='Events'>${redEvent}${greenEvent}</div>`
             eventsFlag = true
             datesElement.innerHTML += `<div class='Date ${i === new Date().getDate() && new Date().getMonth() === contextMonth && new Date().getFullYear() === contextYear ? 'Active' : ''}'>${numberSpan}${eventsFlag ? eventsDiv : ''}</div>`
         }

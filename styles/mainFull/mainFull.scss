@@ -96,43 +96,7 @@ body{
         display : grid;
         grid-template-columns: repeat(7, 1fr);
         font-weight: 600;
-        .Number{
-            display : flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .Events{
-            display : flex;
-            justify-content: space-evenly;
-            // position : relative;
-            .EventsElement{
-                margin-top : 4px;
-                width : 8px;
-                height : 8px;
-                border-radius: 5px;
-                &:hover{
-                    cursor: pointer;
-                }
-
-            }
-            .Hover{
-                position : absolute;
-                transform: translateY(-54px);
-                padding : 8px 5px;
-                // border : solid 1px $dark;
-                background-color: white;
-                color : $dark;
-            }
-            .Red{
-                background-color: red;
-            }
-            .Green{
-                background-color: green;
-            }
-            .Blue{
-                background-color: blue;
-            }
-        }
+        
         .Date{
             padding : 10px 0px;
             display : flex;
@@ -144,8 +108,55 @@ body{
                 border : 1px solid $violet;
                 cursor: pointer;
             }
+            .Number{
+                display : flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .Events{
+                display : flex;
+                justify-content: center;
+                // position : relative;
+                .EventsElement{
+                    margin-top : 4px;
+                    width : 8px;
+                    height : 8px;
+                    border-radius: 5px;
+                    margin : 4px 2px 0px 2px;
+                    &:hover{
+                        cursor: pointer;
+                        background-color: rgb(255, 255, 255);
+                    }
+    
+                }
+                .Hover{
+                    position : absolute;
+                    transform: translateY(-54px);
+                    padding : 8px 5px;
+                    // border : solid 1px $dark;
+                    background-color: white;
+                    color : $dark;
+                }
+                .Red{
+                    background-color: rgb(255, 0, 89);
+                }
+                .Green{
+                    background-color: rgb(36, 255, 16);
+                }
+                .Blue{
+                    background-color: rgb(30, 128, 255);
+                }
+            }
         }
         .PrevDate, .NextDate{
+            padding : 10px 0px;
+            display : flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            transition : all 0.2s;
+            border : solid 1px transparent;
+            padding : 32px;
             color: #666;
         }
         .Active{
