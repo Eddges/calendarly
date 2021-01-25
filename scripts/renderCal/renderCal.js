@@ -14,9 +14,13 @@ var dayArray = [
     'December'
 ];
 var eventsArray = {};
-eventsArray['Wed Jan 27 2021'] = {
+eventsArray['Tue Jan 26 2021'] = {
     'red': "Mom's Birthday",
     'blue': "Grocery Shopping",
+};
+eventsArray['Wed Jan 27 2021'] = {
+    'green': "Say Hello to Mr. Spiderman",
+    'blue': "Assassinate 5 mosquitoes",
 };
 var renderCalendar = function (contextMonth, contextYear) {
     var monthNameElement = document.querySelector('.MonthName');
